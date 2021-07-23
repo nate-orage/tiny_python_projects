@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/nate/python/python_env/bin/python3
 """
 Author : Nate
 Date   : today
@@ -17,35 +17,8 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('word',
-                        #metavar='word',
-                        help='A positional argument')
-
-    # # parser.add_argument('-a',
-    # #                     '--arg',
-    # #                     help='A named string argument',
-    # #                     metavar='str',
-    # #                     type=str,
-    # #                     default='')
-
-    # # parser.add_argument('-i',
-    # #                     '--int',
-    # #                     help='A named integer argument',
-    # #                     metavar='int',
-    # #                     type=int,
-    # #                     default=0)
-
-    # # parser.add_argument('-f',
-    # #                     '--file',
-    # #                     help='A readable file',
-    # #                     metavar='FILE',
-    # #                     type=argparse.FileType('r'),
-    # #                     default=None)
-
-    # # parser.add_argument('-o',
-    # #                     '--on',
-    # #                     help='A boolean flag',
-    # #                     action='store_true')
-
+                        metavar='word',
+                        help='A single word')
     return parser.parse_args()
 
 
@@ -53,7 +26,20 @@ def get_args():
 def main():
     args = get_args()
     word = args.word
-    print(word)
+    char = word[0]
+    article = ''
+    
+    if word[0] in 'aeiou':
+        article = 'an' 
+    elif word[0] in 'AEIOU':
+        article = 'An'
+    elif word[0] not in 'AEIOUaeiou' and word[0] == word[0].upper():
+        article =  'A'
+    else:
+        article = 'a'
+    print(f'Ahoy, Captain, {article} {word} off the larboard bow!')
+
+    #print('narwhal')
     # str_arg = args.arg
     # int_arg = args.int
     # file_arg = args.file
