@@ -30,9 +30,7 @@ def get_args():
 # --------------------------------------------------
 def main():
     args = get_args()
-    text = (
-        args.text
-    )  # This creates a variable by extracting the values used by the argument
+    text = args.text # This creates a variable by extracting the values used by the argument
     jumper = {
         "1": "9",
         "2": "8",
