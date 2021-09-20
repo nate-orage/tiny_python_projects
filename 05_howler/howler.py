@@ -8,6 +8,7 @@ Purpose: Howler
 import argparse
 import os
 import sys
+import io
 
 
 # --------------------------------------------------
@@ -31,7 +32,9 @@ def get_args():
 
     args = parser.parse_args()
     if os.path.isfile(args.text): # If the argument given is a text file, the program will open it to read.
-        args.text = open(args.text).read().rstrip().upper()
+        args.text = open(args.text)
+    else:
+        args.text = io.StringIO(args.text + '\n')
     
     return args
 # --------------------------------------------------
@@ -46,11 +49,14 @@ def main():
     # out_fh = open(args.outfile, 'wt') if args.outfile else sys.stdout
     # print(args.text.upper(), file=out_fh)
     '''Another Solution'''
+    # out_fh = open(args.outfile, 'wt') if args.outfile else sys.stdout
+    # out_fh.write(args.text.upper() + '\n')
+    # out_fh.close()
+    '''Solution to save memory'''
     out_fh = open(args.outfile, 'wt') if args.outfile else sys.stdout
-    out_fh.write(args.text.upper() + '\n')
+    for line in args.text:
+        out_fh.write(line.upper())
     out_fh.close()
-
-      
 
 
 # --------------------------------------------------
